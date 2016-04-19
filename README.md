@@ -87,9 +87,8 @@ Create new config file from [alignAssembly_template.config](https://github.com/J
 
 **Run PASA**
 
-```
-/home/jacky/Software/PASApipeline-2.0.1/scripts/Launch_PASA_pipeline.pl -c alignAssembly.config -C -R -g genome.fasta --MAX_INTRON_LENGTH 300 --ALIGNERS blat,gmap --TRANSDECODER --CPU 1 -T -t transcripts.fasta.clean -u transcripts.fasta --TDN tdn.accs --stringent_alignment_overlap 30.0 |& tee pasa.log
-```
+`/home/jacky/Software/PASApipeline-2.0.1/scripts/Launch_PASA_pipeline.pl -c alignAssembly.config -C -R -g genome.fasta --MAX_INTRON_LENGTH 300 --ALIGNERS blat,gmap --TRANSDECODER --CPU 1 -T -t transcripts.fasta.clean -u transcripts.fasta --TDN tdn.accs --stringent_alignment_overlap 30.0 |& tee pasa.log
+`
 
 `--stringent_alignment_overlap` is added for gene dense genomes to avoid overclustering of transcripts with overlapping UTRs
 
