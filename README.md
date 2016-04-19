@@ -130,4 +130,39 @@ Create, adapt and run job scripts for CodingQuarry [run_coding_quarry.sh](https:
 
 **SNAP**
 
+`mkdir snap; cd snap`
+
+`mkdir train; cd train`
+
+`ln -s ../../PASA/*zff* ../../PASA/*.gff3.fasta .`
+
+Run training round
+
+Create, adapt and run job script for training SNAP [train_snap.sh](https://github.com/JackyHess/Fungal_genome_annotation/blob/master/train_snap.sh)
+
+Use model to predict
+
+`cd ../ ; mkdir predict; cd predict`
+
+`ln -s $GENOME_PATH.softmasked $GENOME_NAME.softmasked`
+
+Create, adapt and run job script for SNAP [run_snap.sh](https://github.com/JackyHess/Fungal_genome_annotation/blob/master/run_snap.sh)
+
+## 5) Generate external evidence for EvidenceModeler
+
+Besides the transcript data we derive from PASA alignments, we are also using protein homology information to inform the validity of predicted gene structures. 
+
+For this, I use protein data downloaded from JGI (e.g. all Agaricomycete predicted proteins) and rarify those using CD hit like so:
+
+`gunzip *.gz`
+
+`cat *.aa.fasta > all_reference_proteins.fasta`
+
+`cd-hit -c 0.90 -i all_reference_proteins.fasta -o all_reference_proteins.fasta.nr90 -d 0 -M 0 -T 4`
+
+**AAT alignments**
+
+mkdir foreign; cd foreign
+
+
 
