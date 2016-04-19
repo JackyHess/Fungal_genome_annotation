@@ -102,7 +102,26 @@ Create golden gene set for training gene predictors (mainly SNAP at this point)
 
 `/home/jacky/Software/PASApipeline-2.0.1/scripts/pasa_asmbls_to_training_set.dbi --pasa_transcripts_fasta ./*.assemblies.fasta --pasa_transcripts_gff3 ./*.pasa_assemblies.gff3`
 
+**Copy relevant PASA files to cluster directory**
 
+`mkdir PASA; cd PASA`
 
+Move the files `*.assemblies.fasta.transdecoder.cds`, `*.assemblies.fasta.transdecoder.genome.gff3`, `*.assemblies.fasta.transdecoder.gff3`, `*.assemblies.fasta.transdecoder.pep`, `*.pasa_assemblies.gff3` back to the cluster
+
+## 4) Run gene predictors
+
+`mkdir gene_predictors; cd gene_predictors`
+
+**BRAKER**
+
+`mkdir braker; cd braker`
+
+Run BRAKER using the Hisat2 alignment as input. Create, adapt and run job script for BRAKER from [run_braker.sh](https://github.com/JackyHess/Fungal_genome_annotation/blob/master/run_braker.sh)
+
+**CodingQuarry**
+
+`mkdir coding_quarry; cd coding_quarry`
+
+Create, adapt and run job scripts for CodingQuarry [run_coding_quarry.sh](https://github.com/JackyHess/Fungal_genome_annotation/blob/master/run_coding_quarry.sh)
 
 
