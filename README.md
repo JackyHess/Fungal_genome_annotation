@@ -106,7 +106,11 @@ Create golden gene set for training gene predictors (mainly SNAP at this point)
 
 `mkdir PASA; cd PASA`
 
-Move the files `*.assemblies.fasta.transdecoder.cds`, `*.assemblies.fasta.transdecoder.genome.gff3`, `*.assemblies.fasta.transdecoder.gff3`, `*.assemblies.fasta.transdecoder.pep`, `*.pasa_assemblies.gff3` back to the cluster
+Move the files `*.assemblies.fasta`, `*.assemblies.fasta.transdecoder.cds`, `*.assemblies.fasta.transdecoder.genome.gff3`, `*.assemblies.fasta.transdecoder.gff3`, `*.assemblies.fasta.transdecoder.pep`, `*.pasa_assemblies.gff3` back to the cluster
+
+Extract golden genes
+
+Create, adapt and run job script for extracting training set [extract_golden_genes.sh](https://github.com/JackyHess/Fungal_genome_annotation/blob/master/extract_golden_genes.sh)
 
 ## 4) Run gene predictors
 
@@ -123,5 +127,7 @@ Run BRAKER using the Hisat2 alignment as input. Create, adapt and run job script
 `mkdir coding_quarry; cd coding_quarry`
 
 Create, adapt and run job scripts for CodingQuarry [run_coding_quarry.sh](https://github.com/JackyHess/Fungal_genome_annotation/blob/master/run_coding_quarry.sh)
+
+**SNAP**
 
 
