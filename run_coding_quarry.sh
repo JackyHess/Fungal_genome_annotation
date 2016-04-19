@@ -8,7 +8,7 @@
 
 gmap_build -d $GENOME_NAME $GENOME_PATH
 
-gmap -D ~/databases/gmap -d $GENOME_NAME -B 5 --intronlength=$MAX_INTRON_LENGTH -f gff3_gene -t 10 ../../../trinity_assemblies/transcripts.fasta.clean > all_transcripts.gff3
+gmap -D ~/databases/gmap -d $GENOME_NAME -B 5 --intronlength=$MAX_INTRON_LENGTH -f gff3_gene -t 10 ../../trinity_assemblies/transcripts.fasta.clean > all_transcripts.gff3
 
 CodingQuarry -f $GENOME_PATH -t all_transcripts.gff3 -p 10 -d
 
