@@ -83,6 +83,27 @@ Create, adapt and run job script for seqclean from [run_seqclean.sh](https://git
 
 PASA analysis happens on my Virtual Box instance on my local computer (due to MySQL requirement). To run it, I transfer “transcripts.fasta”, “transcripts.fasta.clean”, “transcripts.fasta.cln”, “tdn.accs” from the “trinity_assemblies” directory and the genome FASTA file to a new folder on my Virtual Box.
 
+Create new config file from [alignAssembly_template.config](https://github.com/JackyHess/Fungal_genome_annotation/blob/master/alignAssembly_template.config). The most important parameter is the MYSQLDB database name.
+
+**Run PASA**
+
+```
+/home/jacky/Software/PASApipeline-2.0.1/scripts/Launch_PASA_pipeline.pl -c alignAssembly.config -C -R -g genome.fasta --MAX_INTRON_LENGTH 300 --ALIGNERS blat,gmap --TRANSDECODER --CPU 1 -T -t transcripts.fasta.clean -u transcripts.fasta --TDN tdn.accs --stringent_alignment_overlap 30.0 |& tee pasa.log
+```
+
+`--stringent_alignment_overlap` is added for gene dense genomes to avoid overclustering of transcripts with overlapping UTRs
+
+This step takes quite a while on a single CPU, but if it crashes or has to be interrupted, the analysis can be restarted by removing the parameter `-C` and adding `-s x` where `x` is the number of the last succesfully completed step. If in doubt choose `-s 1`.
+
+Build comprehensive transcriptome
+
+`/home/jacky/Software/PASApipeline-2.0.1/scripts/build_comprehensive_transcriptome.dbi -c pasa.alignAssembly.Template.txt -t transcripts.fasta.clean`
+
+Create golden gene set for training gene predictors (mainly SNAP at this point)
+
+`/home/jacky/Software/PASApipeline-2.0.1/scripts/pasa_asmbls_to_training_set.dbi --pasa_transcripts_fasta ./*.assemblies.fasta --pasa_transcripts_gff3 ./*.pasa_assemblies.gff3`
+
+
 
 
 
