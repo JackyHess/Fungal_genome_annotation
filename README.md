@@ -154,6 +154,10 @@ Besides the transcript data we derive from PASA alignments, we are also using pr
 
 For this, I use protein data downloaded from JGI (e.g. all Agaricomycete predicted proteins) and rarify those using CD hit like so:
 
+`mkdir foreign; cd foreign`
+
+Download database to directory
+
 `gunzip *.gz`
 
 `cat *.aa.fasta > all_reference_proteins.fasta`
@@ -162,7 +166,12 @@ For this, I use protein data downloaded from JGI (e.g. all Agaricomycete predict
 
 **AAT alignments**
 
-mkdir foreign; cd foreign
+Filter the Agaricomycete protein set to only retain 5 matches per locus (makes the alignment faste).
+
+Create, adapt and run job script for BLASTX [extract_best_hits.sh](https://github.com/JackyHess/Fungal_genome_annotation/blob/master/extract_best_hits.sh)
+
+This will take quite a while...
+
 
 
 
