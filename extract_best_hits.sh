@@ -3,7 +3,7 @@
 #SBATCH --cpus-per-task=10
 #SBATCH --account=uio
 #SBATCH --mem-per-cpu=500
-#SBATCH -t 500
+#SBATCH -t 3000
 
 makeblastdb -in all_reference_proteins.fasta.nr90 -dbtype prot -out all_reference_proteins.fasta.nr90
 
