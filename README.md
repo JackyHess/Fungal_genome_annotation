@@ -172,6 +172,6 @@ Create, adapt and run job script for BLASTX [extract_best_hits.sh](https://githu
 
 This will take quite a while...
 
-
+Create, adapt and run job script for AAT [run_AAT.sh](https://github.com/JackyHess/Fungal_genome_annotation/blob/master/run_AAT.sh)
 
 
