@@ -174,4 +174,14 @@ This will take quite a while...
 
 Create, adapt and run job script for AAT [run_AAT.sh](https://github.com/JackyHess/Fungal_genome_annotation/blob/master/run_AAT.sh)
 
+## 6) Evaluate gene predictor output and external evidence and run EvidenceModeler
+
+Before running EvidenceModeler and combining it all, I try to get a feeling for how well the gene predictors are performing, whether to rerun any training steps, or if I'm happy enough how the evidence from each should be weighed. 
+
+I don't have a great quantitative way of deciding on this, but I find that the most common errors are spottable by eye. Things I look out for in particular for fungal genomes are fusion genes, where multiple transcripts are spliced together, and fragmentation of predicted gene models. 
+
+To do this, I use IGV https://www.broadinstitute.org/igv/
+
+
+
 
