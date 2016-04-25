@@ -1,0 +1,9 @@
+#W eighing scheme for different gene predictors. Adjust according to how each predictor performs on the target species
+
+ABINITIO_PREDICTION	SNAP	2
+ABINITIO_PREDICTION	GeneMark.hmm	5
+ABINITIO_PREDICTION	CodingQuarry_v1.1	8
+ABINITIO_PREDICTION	Augustus	5
+TRANSCRIPT	assembler-sl200_pasa	10
+PROTEIN	AAT	5	
+OTHER_PREDICTION	transdecoder	8
