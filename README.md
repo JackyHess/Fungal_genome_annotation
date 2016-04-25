@@ -212,6 +212,10 @@ Run PASA annotation comparison
 
 `/home/jacky/Software/PASApipeline/scripts/Launch_PASA_pipeline.pl -c pasa.AnnotCompare.cfg -g $GENOME_PATH -t transcripts.fasta.clean -A -L --annots_gff3 *.evm.gff3`
 
+Run a second time (plug in the output file from the previous run here)
+
+`/home/jacky/Software/PASApipeline/scripts/Launch_PASA_pipeline.pl -c pasa.AnnotCompare.cfg -g $GENOME_PATH -t transcripts.fasta.clean -A -L --annots_gff3 *.gene_structures_post_PASA_updates.<number_index>.gff3`
+
 
 
 
