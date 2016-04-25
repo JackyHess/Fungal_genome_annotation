@@ -182,6 +182,37 @@ I don't have a great quantitative way of deciding on this, but I find that the m
 
 To do this, I use IGV https://www.broadinstitute.org/igv/
 
+`mkdir evidencemodeler; cd evidencemodeler`
+
+Collect all input for EvidenceModeler
+
+`cp ../PASA/*.pasa_assemblies.gff3 transcript_alignments.gff3`
+
+`cat ../gene_predictors/braker/genemark.gff3 ../gene_predictors/braker/augustus_EVM.gff3 ../gene_predictors/coding_quarry/coding_quarry.gff3 ../gene_predictors/snap/predict/snap.gff3 > abinitio_gene_predictions.gff3`
+
+`cat ../PASA/*.assemblies.fasta.transdecoder.genome.gff3 >> abinitio_gene_predictions.gff3`
+
+`cp ../foreign/$GENOME_NAME.best_matches_agaricomycetes.gff3 protein_alignments.gff3`
+
+Generate new weights file
+
+`cp $JAMG_PATH/configs/evm_weights.txt .` See [here](https://github.com/JackyHess/Fungal_genome_annotation/edit/master/evm_weights.txt) for an example. It's important here that the evidence descriptor (i.e. name of the program) exactly matches column 2 in the respective GFF3 files produced by each gene predictor.
+
+Create, adapt and run job script for EvidenceModeler [run_evidencemodeler.sh](https://github.com/JackyHess/Fungal_genome_annotation/blob/master/run_evidencemodeler.sh)
+
+## 7) Clean up the annotations using PASA
+
+Create new PASA config file for annotation comparison [pasa.AnnotCompare.cfg](https://github.com/JackyHess/Fungal_genome_annotation/blob/master/pasa.AnnotCompare.cfg)
+
+PASA usually needs to run for at least two rounds in order to be able to incorporate all transcripts successfully. 
+
+Copy `$GENOME_NAME.evm.gff3` to the virtual machine.
+
+Run PASA annotation comparison
+
+`/home/jacky/Software/PASApipeline/scripts/Launch_PASA_pipeline.pl -c pasa.AnnotCompare.cfg -g $GENOME_PATH -t transcripts.fasta.clean -A -L --annots_gff3 *.evm.gff3`
+
+
 
 
 
