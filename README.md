@@ -216,7 +216,23 @@ Run a second time (plug in the output file from the previous run here)
 
 `/home/jacky/Software/PASApipeline/scripts/Launch_PASA_pipeline.pl -c pasa.AnnotCompare.cfg -g $GENOME_PATH -t transcripts.fasta.clean -A -L --annots_gff3 *.gene_structures_post_PASA_updates.<number_index>.gff3`
 
+Clean up annotation file, make gene IDs and generate common accompanying files
 
+`mkdir final_annotation; cd final_annotation`
+
+`/home/jacky/Software/PASApipeline/misc_utilities/gff3_file_simple_acc_resetter.pl  ../*.gene_structures_post_PASA_updates.<final_number_index>.gff3 $GENOME_PATH > $GENOME_NAME.final_annotation.gff3`
+
+`/home/jacky/Software/PASApipeline/misc_utilities/gff3_file_to_proteins.pl $GENOME_NAME.final_annotation.gff3 $GENOME_PATH > $GENOME_NAME.final_annotation.proteins.fasta`
+
+`/home/jacky/Software/PASApipeline/misc_utilities/gff3_file_promoter_extractor.pl --genes $GENOME_NAME.final_annotation.gff3 --genome $GENOME_PATH > $GENOME_NAME.final_annotation.promoters.fasta`
+
+`/home/jacky/Software/PASApipeline/misc_utilities/gff3_file_to_proteins.pl $GENOME_NAME.final_annotation.gff3 $GENOME_PATH CDS > $GENOME_NAME.final_annotation.CDS.fasta`
+
+`/home/jacky/Software/PASApipeline/misc_utilities/gff3_file_to_proteins.pl $GENOME_NAME.final_annotation.gff3 $GENOME_PATH cDNA > $GENOME_NAME.final_annotation.transcripts.fasta`
+
+`/home/jacky/Software/PASApipeline/misc_utilities/gff3_to_gtf_format.pl $GENOME_NAME.final_annotation.gff3 $GENOME_PATH > $GENOME_NAME.final_annotation.gtf`
+
+Done!
 
 
 
