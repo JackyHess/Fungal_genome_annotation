@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 #SBATCH --cpus-per-task=10
 #SBATCH --account=uio
