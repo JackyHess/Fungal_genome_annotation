@@ -10,7 +10,7 @@ module load cufflinks #for gffread utility
 
 $JAMG_PATH/bin/splitfasta.pl -i $GENOME_NAME.softmasked
 
-find $GENOME_NAME.softmasked_dir1 -maxdepth 1 -type f -exec sh -c 'echo "$JAMG_PATH/3rd_party/snap/snap ../$GENOME_NAME.hmm $1 -lcmask -quiet > $1.snap 2>$
+find $GENOME_NAME.softmasked_dir1 -maxdepth 1 -type f -exec sh -c 'echo "$JAMG_PATH/3rd_party/snap/snap ../train/$GENOME_NAME.hmm $1 -lcmask -quiet > $1.snap 2>$'
 
 ParaFly -c snap.commands -CPU $LOCAL_CPUS -v –shuffle
 
