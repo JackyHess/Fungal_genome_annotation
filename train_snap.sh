@@ -6,9 +6,9 @@
 #SBATCH -t 200
 
 
-$JAMG_PATH/3rd_party/bin/fathom ./*golden.train.zff ./*.golden.train.gff3.fasta -gene-stats | tee gene.statistics.log
+$JAMG_PATH/3rd_party/bin/fathom $GENOME_NAME.ann $GENOME_NAME.dna -gene-stats | tee gene.statistics.log
 
-$JAMG_PATH/3rd_party/bin/fathom ./*golden.train.zff ./*.golden.train.gff3.fasta -categorize 1000
+$JAMG_PATH/3rd_party/bin/fathom $GENOME_NAME.ann $GENOME_NAME.dna -categorize 1000
 
 $JAMG_PATH/3rd_party/bin/fathom -export 1000 -plus uni.ann uni.dna
 
