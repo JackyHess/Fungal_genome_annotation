@@ -134,7 +134,24 @@ Create, adapt and run job scripts for CodingQuarry [run_coding_quarry.sh](https:
 
 `mkdir train; cd train`
 
-`ln -s ../../PASA/*zff* ../../PASA/*.gff3.fasta .`
+`cp ../../../PASA/final_golden_genes.gff3.nr.golden.train.zff $GENOME_NAME.ann`
+
+Follow suggestions and use scripts from [https://biowize.wordpress.com/2012/06/01/training-the-snap-ab-initio-gene-predictor/](https://biowize.wordpress.com/2012/06/01/training-the-snap-ab-initio-gene-predictor/) to generate well formed training set. 
+
+`grep '^>' $GENOME_NAME.ann | tr -d '>' > $GENOME_NAME.seqs2keep`
+
+`perl /usit/abel/u1/jacqueh/Software/jamg/3rd_party/snap/fasta_sort.pl $GENOME_NAME.seqs2keep < $GENOME_PATH > $GENOME_NAME.dna`
+
+Validate gene models and remove invalid models if necessary. I remove those that result in an internal stop codon, but keep those with warnings about alternative splice acceptor/donor sites or microexons.
+
+`/usit/abel/u1/jacqueh/Software/jamg/3rd_party/snap/fathom $GENOME_NAME.ann $GENOME_NAME.dna -validate > validate.res`
+
+Repeat FASTA sorting to remove scaffolds with no genes on them (if genes were removed from the training set)
+
+`grep '^>' $GENOME_NAME.ann | tr -d '>' > $GENOME_NAME.seqs2keep`
+
+`perl /usit/abel/u1/jacqueh/Software/jamg/3rd_party/snap/fasta_sort.pl $GENOME_NAME.seqs2keep < $GENOME_PATH > $GENOME_NAME.dna`
+
 
 Run training round
 
@@ -233,6 +250,3 @@ Clean up annotation file, make gene IDs and generate common accompanying files
 `/home/jacky/Software/PASApipeline/misc_utilities/gff3_to_gtf_format.pl $GENOME_NAME.final_annotation.gff3 $GENOME_PATH > $GENOME_NAME.final_annotation.gtf`
 
 Done!
-
-
-
