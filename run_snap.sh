@@ -19,3 +19,18 @@ gffread ../../../PASA/final_golden_genes.gff3.nr.golden.test.gff3 -T -o final_go
 
 $JAMG_PATH/3rd_party/eval-2.2.8/evaluate_gtf.pl -g final_golden_genes.gff3.nr.golden.test.gtf snap.gtf > snap.eval
 
+#Modify SNAP output to be compatible with EvidenceModeler
+
+sed -i -e 's/gene_id /gene_id=/g' snap.gtf
+
+sed -i -e 's/transcript_id /transcript_id=/g' snap.gtf
+
+sed -i -e 's/Name /Name=/g' snap.gtf
+
+sed -i -e 's/; /;/g' snap.gtf
+
+sed -i -e 's/SNAP pred //g' snap.gtf
+
+$JAMG_PATH/3rd_party/evidencemodeler/EvmUtils/misc/SNAP_to_GFF3.pl snap.gtf > snap.gff3
+
+sed -i -e 's/;.exon/.exon/g' snap.gff3
